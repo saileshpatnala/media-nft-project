@@ -252,7 +252,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1619814054422-2021-04-30T20:20:54.422Z/aws-python-flask-dynamodb-api.zip"
+                "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1619986212311-2021-05-02T20:10:12.311Z/aws-python-flask-dynamodb-api.zip"
               },
               "Handler": "s_api.handler",
               "Runtime": "python3.8",
@@ -275,14 +275,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionh3qncFDgGrp4u7V0ru7CPYa2kW3rXwPkl6eGIjXy6s": {
+          "ApiLambdaVersiondYvnOD5K6cvxaLNKm7BZUvWpkr3CyWZk1xDoZEvW33o": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "k+2cuTgeY77/7HgOU4yMFZKUZg+sv/QZxlr6TLH/bKo="
+              "CodeSha256": "5XCjTZjIKNOeeZpbgjQH5hUGmlpNuzB5fe+oisx5HKo="
             }
           },
           "ApiGatewayRestApi": {
@@ -401,7 +401,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1619814032931": {
+          "ApiGatewayDeployment1619986191957": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -560,7 +560,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1619814054422-2021-04-30T20:20:54.422Z/custom-resources.zip"
+                "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1619986212311-2021-05-02T20:10:12.311Z/custom-resources.zip"
               },
               "FunctionName": "aws-python-flask-dynamodb-api-dev-custom-resource-apigw-cw-role",
               "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -644,7 +644,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionh3qncFDgGrp4u7V0ru7CPYa2kW3rXwPkl6eGIjXy6s"
+              "Ref": "ApiLambdaVersiondYvnOD5K6cvxaLNKm7BZUvWpkr3CyWZk1xDoZEvW33o"
             },
             "Export": {
               "Name": "sls-aws-python-flask-dynamodb-api-dev-ApiLambdaFunctionQualifiedArn"
@@ -812,7 +812,7 @@
         "timeout": 6,
         "runtime": "python3.8",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionh3qncFDgGrp4u7V0ru7CPYa2kW3rXwPkl6eGIjXy6s"
+        "versionLogicalId": "ApiLambdaVersiondYvnOD5K6cvxaLNKm7BZUvWpkr3CyWZk1xDoZEvW33o"
       }
     },
     "resources": {
@@ -877,7 +877,7 @@
     "artifact": "/Users/jacobrauch/article_nft/backend/nft-aws/.serverless/aws-python-flask-dynamodb-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/aws-python-flask-dynamodb-api/dev/1619814054422-2021-04-30T20:20:54.422Z",
+    "artifactDirectoryName": "serverless/aws-python-flask-dynamodb-api/dev/1619986212311-2021-05-02T20:10:12.311Z",
     "artifact": "aws-python-flask-dynamodb-api.zip"
   }
 }
