@@ -32,7 +32,7 @@ class Articles extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { articles: null, name: '', ques: '', ans: '' }
+    this.state = { articles: null }
   }
 
   handleChange = (event) => {
@@ -44,7 +44,7 @@ class Articles extends React.Component {
   async fetchArticles() {
     const apiUrl = ' https://p35l1ls53m.execute-api.us-east-1.amazonaws.com/dev/articles';
     const idToken = await firebase.auth().currentUser?.getIdToken();
-    const user = await firebase.auth().currentUser?.uid;
+    const user = firebase.auth().currentUser.uid;
     fetch(apiUrl,
       {
         headers: {
@@ -56,31 +56,32 @@ class Articles extends React.Component {
       }
     )
       .then((response) => response.json())
-      .then((data) => this.setState({ questions: data }));
+      .then((data) => this.setState({ articles: data }));
   }
 
   async componentDidMount() {
     this.fetchArticles();
   }
 
-  async createNewQuestion() {
-    // const apiUrl = 'https://p35l1ls53m.execute-api.us-east-1.amazonaws.com/dev/questions';
-    // const token = await firebase.auth().currentUser?.getIdToken();
+  async updateArticleScore(id, value) {
+    const apiUrl = 'https://p35l1ls53m.execute-api.us-east-1.amazonaws.com/dev/article_score';
+    const token = await firebase.auth().currentUser?.getIdToken();
+    const user = firebase.auth().currentUser.uid;
 
-    // fetch(apiUrl, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Authorization': token,
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     name: this.state.name,
-    //     question: this.state.ques,
-    //     answer: this.state.ans
-    //   })
-    // });
-    // this.fetchQuestions();
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        article_id: id,
+        user_id: user,
+        score: value
+      })
+    });
+    this.fetchArticles();
   }
 
 
@@ -91,6 +92,16 @@ class Articles extends React.Component {
         <ul>
           {
             this.state.articles && this.state.articles.map(article => {
+              var truth = "None";
+
+              if (article.score == 1) {
+                truth = "True";
+              }
+
+              if (article.score == -1) {
+                truth = "False";
+              }
+
               return (
                 <li>
                   <div class="card">
@@ -99,23 +110,23 @@ class Articles extends React.Component {
                         <h3>Name: </h3> {article.name}
                       </div>
                       <div class="content">
-                        <h3>Content: </h3> {article.article}
+                        <h3>Content: </h3> {article.content}
+                      </div>
+                      <div class="content">
+                        <h3>Truth: </h3> {truth}
                       </div>
                     </div>
+                  </div>
+                  <div class="field">
+                    <h3>Update Truth </h3>
+                    <button onClick={() => this.updateArticleScore(article.id, 1)}>True</button>
+                    <button onClick={() => this.updateArticleScore(article.id, -1)}>False</button>
                   </div>
                 </li>
               )
             })
           }
         </ul>
-        {/* <div>
-          <div class="title">Create a Question</div>
-          <label>Name <input type="text" name="name" onChange={this.handleChange}></input></label><br></br>
-          <label>Question <input type="text" name="ques" onChange={this.handleChange}></input></label><br></br>
-          <label>Answer <input type="text" name="ans" onChange={this.handleChange}></input></label><br></br>
-
-          <button onClick={() => this.createNewQuestion()}>Submit</button>
-        </div> */}
       </div>
     )
   };

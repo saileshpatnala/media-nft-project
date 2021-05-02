@@ -8,6 +8,7 @@ from google.oauth2 import id_token
 from google.auth.transport import requests
 
 from boto3.dynamodb.types import TypeDeserializer
+from boto3.dynamodb.conditions import Key
 
 import uuid
 
@@ -52,13 +53,12 @@ def getArticles():
 
         if user_id:
             table = dynamodb.Table('user_articles')
-            response = table.query(
-                KeyConditionExpression=Key('user_id').eq(user_id)
+            response = table.scan(
+                FilterExpression=Key('user_id').eq(user_id)
             )
 
-            for i in response['Items']:
-                d = convert_db_object(i)
-                art[d['article_id']] = {'score':d['score']}
+            for d in response['Items']:
+                art[d['article_id']] = {'score':int(d['score'])}
 
         articles = dynamodb_client.scan(TableName='articles')
 
@@ -70,8 +70,12 @@ def getArticles():
                 art[d['article_id']]['name'] = d['name']
                 art[d['article_id']]['content'] = d['article']
 
-        
-        js = jsonify(art)
+        all_arts = []
+        for key, value in art.items():
+            value['id'] = key
+            all_arts.append(value)
+
+        js = jsonify(all_arts)
         js.headers.add('Access-Control-Allow-Origin', '*')
         return js
 
@@ -105,20 +109,19 @@ def articleScore():
         article_id = request.headers.get('article_id')
 
         table = dynamodb.Table('user_articles')
-        response = table.query(
-            KeyConditionExpression=Key('article_id').eq(article_id)
+        response = table.scan(
+            FilterExpression=Key('article_id').eq(article_id)
         )
         s = 0
         for r in response['Items']:
-            d = convert_db_object(i)
-            s += d['score']
+            s += int(r['score'])
 
         return make_response(jsonify(score=s), 200)
         
     elif request.method == 'POST':
         article_id = request.json.get('article_id')
         user_id =  request.json.get('user_id')
-        score =  request.json.get('score')
+        score =  str(request.json.get('score'))
 
         dynamodb_client.put_item(
             TableName='user_articles',
