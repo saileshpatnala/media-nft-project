@@ -493,7 +493,7 @@ class Main extends React.Component {
               <div class="search-bar-xFCRPv"></div>
               <div class="settings-xFCRPv franklingothicurw-medium-dodger-blue-24px">Settings<br /></div>
             </div>
-            <a href="article-dashboard-01.html">
+            <a href="/dash">
               <div class="articles-PZtHVO">
                 <div class="search-bar-M6QzmS"></div>
                 <div class="articles-M6QzmS franklingothicurw-medium-dodger-blue-24px">Articles<br /></div></div
