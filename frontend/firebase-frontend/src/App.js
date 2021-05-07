@@ -74,20 +74,16 @@ class Verify extends React.Component {
           <div class="user-information-text-5mh5pu arial-regular-normal-coconut-28px">Verification</div>
         </div>
         <Modal isOpen={this.state.showModal} contentLabel="Verification">
-          <div class="blur-overlay-C61RwL"></div>
+
+          <div class="background-flJxko border-1px-dove-gray"></div>
           <div class="sign-up-display-module-C61RwL">
             <div class="background-flJxko"></div>
             <div class="verify-article-truth-flJxko lapturedisplay-semi-bold-white-60px">Verify Article Truth</div>
-            <a href={link + "-1"}>
-              <div class="flase-button-flJxko">
-                <div class="button-JQYTcs"></div>
-                <div class="false-JQYTcs franklingothicurw-medium-white-28px">False</div>
-              </div></a>
+            <div class="background-flJxko border-1px-dove-gray"></div>
+            <div onClick={this.handleCloseModal} class="continue-flJxko  lapturesubhead-semi-bold-christine-32px">Cancel</div>
+            <a href={link + "-1"}><div class="login-C61RwL lapturesubhead-semi-bold-christine-32px">False</div></a><br></br>
+            <a href={link + "1"}><div class="login-C61RwL lapturesubhead-semi-bold-christine-32px">True</div></a>
           </div>
-          <a href={link + "1"}><div class="true-button-flJxko">
-            <div class="button-fs3fdx"></div>
-            <div class="true-fs3fdx franklingothicurw-medium-white-28px">True</div>
-          </div></a>
         </Modal>
       </div >
     );
@@ -296,7 +292,7 @@ class Screen extends React.Component {
   async fetchArticles() {
     const urlParams = new URLSearchParams(window.location.search);
     const articleID = urlParams.get("articleID");
-    const apiUrl = ' https://p35l1ls53m.execute-api.us-east-1.amazonaws.com/dev/articles';
+    const apiUrl = 'https://p35l1ls53m.execute-api.us-east-1.amazonaws.com/dev/articles';
     const idToken = await firebase.auth().currentUser?.getIdToken();
     const user = firebase.auth().currentUser.uid;
 
@@ -342,7 +338,7 @@ class Screen extends React.Component {
         score: value
       })
     });
-    this.fetchArticles();
+    window.location.replace("/art?articleID=" + id);
   }
 
   render() {
@@ -351,7 +347,7 @@ class Screen extends React.Component {
       const articleID = urlParams.get("articleID");
       const truthValue = urlParams.get("truthValue");
       if (articleID != null && truthValue != null) {
-        this.updateArticleScore(articleID, truthValue);
+        this.updateArticleScore(articleID, parseInt(truthValue));
       }
 
       if (this.state.articles != null && this.state.articles[0] != null) {
@@ -360,12 +356,12 @@ class Screen extends React.Component {
         const desc = this.state.articles[0].content;
         const score = this.state.articles[0].score;
         return (
-          <Checker name={name} desc={desc} score={score} id={articleID} />
+          <Checker name={name} desc={desc} score={score} articleID={articleID} />
         );
       }
 
       return (
-        <Checker name="Temp" desc="Temp" score="1" id="id" />
+        <Checker name="Temp" desc="Temp" score="1" articleID="id" />
       );
     }
     if (this.props.screens == "dash") {

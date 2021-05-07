@@ -75,10 +75,11 @@ def getArticles():
         for key, value in art.items():
             if article_id and article_id.lower() != key.lower():
                 continue
-            
+
             value['id'] = key
             all_arts.append(value)
-
+        if (len(all_arts) > 5):
+            all_arts = all_arts[-5:]
         js = jsonify(all_arts)
         js.headers.add('Access-Control-Allow-Origin', '*')
         return js
@@ -127,14 +128,20 @@ def articleScore():
         user_id =  request.json.get('user_id')
         score =  str(request.json.get('score'))
 
-        dynamodb_client.put_item(
-            TableName='user_articles',
-            Item={
-                'article_id': {'S': article_id},
-                'user_id': {'S': user_id},
-                'score': {'N': score}
-            }
+        table = dynamodb.Table('user_articles')
+        response = table.scan(
+            FilterExpression=Key('article_id').eq(article_id)
         )
+
+        if (response['Items'] and len(response['Items']) > 0):
+            dynamodb_client.put_item(
+                TableName='user_articles',
+                Item={
+                    'article_id': {'S': article_id},
+                    'user_id': {'S': user_id},
+                    'score': {'N': score}
+                }
+            )
 
         return make_response(jsonify(status='success'), 200)
 
