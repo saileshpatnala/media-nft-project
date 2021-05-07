@@ -48,6 +48,7 @@ def getArticles():
 
     if request.method == 'GET':
         user_id = request.headers.get('user_id')
+        article_id = request.headers.get('article_id')
 
         art = {}
 
@@ -72,6 +73,9 @@ def getArticles():
 
         all_arts = []
         for key, value in art.items():
+            if article_id and article_id.lower() != key.lower():
+                continue
+            
             value['id'] = key
             all_arts.append(value)
 

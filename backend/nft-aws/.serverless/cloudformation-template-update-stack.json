@@ -226,7 +226,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1619986212311-2021-05-02T20:10:12.311Z/aws-python-flask-dynamodb-api.zip"
+          "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1620419287604-2021-05-07T20:28:07.604Z/aws-python-flask-dynamodb-api.zip"
         },
         "Handler": "s_api.handler",
         "Runtime": "python3.8",
@@ -249,14 +249,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersiondYvnOD5K6cvxaLNKm7BZUvWpkr3CyWZk1xDoZEvW33o": {
+    "ApiLambdaVersionFEtvYllPBaxJXBacDuMpQRXLIgfFJq90XSyqCJLnzFQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "5XCjTZjIKNOeeZpbgjQH5hUGmlpNuzB5fe+oisx5HKo="
+        "CodeSha256": "WMw1zgvSOtAEEhDzzUymkqbF7Rqic5qgKrvaWl4o7hU="
       }
     },
     "ApiGatewayRestApi": {
@@ -375,7 +375,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1619986191957": {
+    "ApiGatewayDeployment1620419266157": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -534,7 +534,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1619986212311-2021-05-02T20:10:12.311Z/custom-resources.zip"
+          "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1620419287604-2021-05-07T20:28:07.604Z/custom-resources.zip"
         },
         "FunctionName": "aws-python-flask-dynamodb-api-dev-custom-resource-apigw-cw-role",
         "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -618,7 +618,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersiondYvnOD5K6cvxaLNKm7BZUvWpkr3CyWZk1xDoZEvW33o"
+        "Ref": "ApiLambdaVersionFEtvYllPBaxJXBacDuMpQRXLIgfFJq90XSyqCJLnzFQ"
       },
       "Export": {
         "Name": "sls-aws-python-flask-dynamodb-api-dev-ApiLambdaFunctionQualifiedArn"
