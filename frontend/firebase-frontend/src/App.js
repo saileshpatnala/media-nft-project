@@ -471,7 +471,7 @@ class Main extends React.Component {
     }
     return (
       <div class="container-center-horizontal">
-        <div class="article-dashboard-01 screen">
+        <div class="article-dashboard-01 nft-marketplace-01 screen">
           <div class="background-C61RwL"></div>
           <img class="left-divider-C61RwL" src="img/divider-left-1@1x.png" />
           <img class="right-divider-C61RwL" src="img/divider-left-1@1x.png" />
@@ -479,11 +479,12 @@ class Main extends React.Component {
             <div class="background-DGxVxJ"></div>
             <img class="icon-DGxVxJ" src="img/icon-11@1x.png" />
             <img class="icon-xSG5Dw" src="img/icon-12@1x.png" />
-            <div class="text-DGxVxJ franklingothicurw-med-normal-electric-lime-36px">
-              <span class="span0-dHJEIB franklingothicurw-med-normal-dodger-blue-36px">{firebase.auth().currentUser.displayName} <br /></span
-              ><span class="span1-dHJEIB franklingothicurw-med-normal-black-18px"><br /></span
-              ><span class="span2-dHJEIB franklingothicurw-medium-electric-lime-18px">Profile Information<br /></span>
+            <div class="user-information-text-DGxVxJ franklingothicurw-med-normal-electric-lime-36px">
+              <span class="span0-VBRFVu franklingothicurw-med-normal-dodger-blue-36px">{firebase.auth().currentUser.displayName} <br /></span
+              ><span class="span1-VBRFVu franklingothicurw-med-normal-black-18px"><br /></span
+              ><span class="span2-VBRFVu franklingothicurw-medium-electric-lime-18px">Profile Information</span>
             </div>
+
             <div class="x45-DGxVxJ lapturedisplay-semi-bold-white-32px"></div>
           </div>
           <div class="nav-menu-C61RwL">
@@ -496,14 +497,15 @@ class Main extends React.Component {
               <div class="search-bar-xFCRPv"></div>
               <div class="settings-xFCRPv franklingothicurw-medium-dodger-blue-24px">Settings<br /></div>
             </div>
-            <div class="articles-PZtHVO">
-              <div class="search-bar-M6QzmS"></div>
-              <div class="articles-M6QzmS franklingothicurw-medium-outer-space-24px">Articles<br /></div>
-            </div>
+            <a href="article-dashboard-01.html">
+              <div class="articles-PZtHVO">
+                <div class="search-bar-M6QzmS"></div>
+                <div class="articles-M6QzmS franklingothicurw-medium-dodger-blue-24px">Articles<br /></div></div
+              ></a>
             <div class="marketplace-PZtHVO">
               <div class="search-bar-K5Lepo"></div>
-              <div class="marketplace-K5Lepo franklingothicurw-medium-dodger-blue-24px">Marketplace<br /></div></div
-            >
+              <div class="marketplace-K5Lepo franklingothicurw-medium-outer-space-24px">Marketplace<br /></div>
+            </div>
           </div>
           <Screen screens={this.props.screens} />
         </div>
