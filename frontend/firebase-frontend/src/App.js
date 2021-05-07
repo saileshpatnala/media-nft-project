@@ -39,57 +39,6 @@ const uiConfig = {
   ]
 };
 
-class Verify extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      showModal: false
-    };
-
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
-  }
-
-  handleOpenModal() {
-    this.setState({ showModal: true });
-  }
-
-  handleCloseModal() {
-    this.setState({ showModal: false });
-  }
-
-
-  render() {
-    const link = "/art?articleID=" + this.props.articleID + "&truthValue=";
-
-    return (
-      <div>
-        <div class="verification-module-C61RwL">
-          <div class="background-5mh5pu"></div>
-          <a onClick={this.handleOpenModal}>
-            <div class="button-5mh5pu">
-              <div class="button-RfwmBs"></div>
-              <div class="submit-RfwmBs franklingothicurw-med-normal-coconut-24px">Submit</div>
-            </div></a >
-          <div class="user-information-text-5mh5pu arial-regular-normal-coconut-28px">Verification</div>
-        </div>
-        <Modal isOpen={this.state.showModal} contentLabel="Verification">
-
-          <div class="background-flJxko border-1px-dove-gray"></div>
-          <div class="sign-up-display-module-C61RwL">
-            <div class="background-flJxko"></div>
-            <div class="verify-article-truth-flJxko lapturedisplay-semi-bold-white-60px">Verify Article Truth</div>
-            <div class="background-flJxko border-1px-dove-gray"></div>
-            <div onClick={this.handleCloseModal} class="continue-flJxko  lapturesubhead-semi-bold-christine-32px">Cancel</div>
-            <a href={link + "-1"}><div class="login-C61RwL lapturesubhead-semi-bold-christine-32px">False</div></a><br></br>
-            <a href={link + "1"}><div class="login-C61RwL lapturesubhead-semi-bold-christine-32px">True</div></a>
-          </div>
-        </Modal>
-      </div >
-    );
-  }
-}
-
 class Checker extends React.Component {
   render() {
     var truth = "True";
@@ -175,7 +124,20 @@ class Checker extends React.Component {
           >
           <div class="user-information-text-may3U0 arial-regular-normal-white-28px">Article Minting</div>
         </div>
-        <Verify articleID={this.props.articleID} />
+        <div class="verification-module-C61RwL">
+          <div class="background-5mh5pu"></div>
+          <a href={link + "1"}>
+            <div class="button-5mh5pu">
+              <div class="button-RfwmBs"></div>
+              <div class="submit-RfwmBs franklingothicurw-med-normal-coconut-24px">True</div>
+            </div></a >
+          <a href={link + "-1"}>
+            <div class="button-5mh5pu">
+              <div class="button-RfwmBs"></div>
+              <div class="submit-RfwmBs franklingothicurw-med-normal-coconut-24px">False</div>
+            </div></a >
+          <div class="user-information-text-5mh5pu arial-regular-normal-coconut-28px">Verification</div>
+        </div>
       </div>
     );
   }
